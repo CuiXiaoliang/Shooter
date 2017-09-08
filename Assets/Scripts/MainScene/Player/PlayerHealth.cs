@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
+    #region Para
     public int startingHealth = 100;
     public int currentHealth;
     public Slider healthSlider;
@@ -21,33 +22,38 @@ public class PlayerHealth : MonoBehaviour
     PlayerShooting playerShooting;
     bool isDead;
     bool damaged;
+    #endregion
 
+    #region UnityInternalCall
 
-    void Awake ()
+    void Awake()
     {
-        anim = GetComponent <Animator> ();
-        playerAudio = GetComponent <AudioSource> ();
-        playerMovement = GetComponent <PlayerMovement> ();
+        anim = GetComponent<Animator>();
+        playerAudio = GetComponent<AudioSource>();
+        playerMovement = GetComponent<PlayerMovement>();
         playerShooting = GetComponentInChildren<PlayerShooting>();
         currentHealth = startingHealth;
     }
 
 
-    void Update ()
+    void Update()
     {
-        if(damaged)
+        if (damaged)
         {
             damageImage.color = flashColour;
         }
         else
         {
-            damageImage.color = Color.Lerp (damageImage.color, Color.clear, flashSpeed * Time.deltaTime);
+            damageImage.color = Color.Lerp(damageImage.color, Color.clear, flashSpeed * Time.deltaTime);
         }
         damaged = false;
     }
 
+    #endregion
 
-    public void TakeDamage (int amount)
+    #region Interface
+
+    public void TakeDamage(int amount)
     {
         damaged = true;
 
@@ -55,33 +61,51 @@ public class PlayerHealth : MonoBehaviour
 
         healthSlider.value = currentHealth;
 
-        playerAudio.Play ();
+        playerAudio.Play();
 
-        if(currentHealth <= 0 && !isDead)
+        if (currentHealth <= 0 && !isDead)
         {
-            Death ();
+            Death();
         }
     }
 
+    
 
-    void Death ()
+    private void RestartLevel()
+    {
+        SceneManager.LoadScene(0);
+    }
+
+    #endregion
+
+    #region InternalCall
+
+    private void Death()
     {
         isDead = true;
 
         playerShooting.DisableEffects();
 
-        anim.SetTrigger ("Die");
+        anim.SetTrigger("Die");
 
         playerAudio.clip = deathClip;
-        playerAudio.Play ();
+        playerAudio.Play();
 
         playerMovement.enabled = false;
         playerShooting.enabled = false;
     }
 
-
-    public void RestartLevel ()
+    private void GameOver()
     {
-        //SceneManager.LoadScene (0);
+        GameObject.FindGameObjectWithTag("GameManager").GetComponent<MainSceneGameManager>().GameOver();
     }
+    #endregion
+
+
+
+
+
+
+
+
 }

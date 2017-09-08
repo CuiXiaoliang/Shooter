@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
+[RequireComponent(typeof(EnemyController))]
 public class EnemyManager : MonoBehaviour
 {
     public PlayerHealth playerHealth;
@@ -16,6 +18,9 @@ public class EnemyManager : MonoBehaviour
 
     void Spawn ()
     {
+        EnemyController enemyController = GetComponent<EnemyController>();
+        if(enemyController.IsGamePaused)
+            return;
         if(playerHealth.currentHealth <= 0f)
         {
             return;
@@ -23,6 +28,7 @@ public class EnemyManager : MonoBehaviour
 
         int spawnPointIndex = Random.Range (0, spawnPoints.Length);
 
-        Instantiate (enemy, spawnPoints[spawnPointIndex].position, spawnPoints[spawnPointIndex].rotation);
+        GameObject newEnemy = Instantiate (enemy, spawnPoints[spawnPointIndex].position, spawnPoints[spawnPointIndex].rotation) as GameObject;
+        enemyController.AddEnemy(newEnemy);
     }
 }

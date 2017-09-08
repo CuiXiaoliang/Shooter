@@ -14,6 +14,7 @@ public class EnemyHealth : MonoBehaviour
     private ParticleSystem hitParticles;
     private ParticleSystem deadParticles;
     private CapsuleCollider capsuleCollider;
+    private EnemyController enemyController;
     private bool isDead;
     private bool isSinking;
 
@@ -25,6 +26,7 @@ public class EnemyHealth : MonoBehaviour
         hitParticles = transform.Find("HitParticles").GetComponent<ParticleSystem>();
         deadParticles = transform.Find("DeathParticles").GetComponent<ParticleSystem>();
         capsuleCollider = GetComponent <CapsuleCollider> ();
+        enemyController = GameObject.FindGameObjectWithTag("EnemyManager").GetComponent<EnemyController>();
         currentHealth = startingHealth;
     }
 
@@ -78,6 +80,8 @@ public class EnemyHealth : MonoBehaviour
         GetComponent <Rigidbody> ().isKinematic = true;
         isSinking = true;
         ScoreManager.score += scoreValue;
+        ScoreManager.num++;
+        enemyController.RemoveEnemy(gameObject);
         Destroy (gameObject, 2f);
     }
 }

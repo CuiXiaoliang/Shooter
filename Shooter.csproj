@@ -76,6 +76,24 @@
     <Reference Include="UnityEngine.HoloLens">
       <HintPath>Library\UnityAssemblies\UnityEngine.HoloLens.dll</HintPath>
     </Reference>
+    <Reference Include="DemiLib">
+      <HintPath>Assets\Demigiant\DemiLib\Core\DemiLib.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTween43">
+      <HintPath>Assets\Demigiant\DOTween\DOTween43.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTween50">
+      <HintPath>Assets\Demigiant\DOTween\DOTween50.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTween">
+      <HintPath>Assets\Demigiant\DOTween\DOTween.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTweenPro">
+      <HintPath>Assets\Demigiant\DOTweenPro\DOTweenPro.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTween46">
+      <HintPath>Assets\Demigiant\DOTween\DOTween46.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\_Complete-Game\MobileInput\Scripts\CrossPlatformInputManager.cs" />
@@ -99,6 +117,7 @@
     <Compile Include="Assets\_Complete-Game\Scripts\Player\PlayerHealth.cs" />
     <Compile Include="Assets\_Complete-Game\Scripts\Player\PlayerMovement.cs" />
     <Compile Include="Assets\_Complete-Game\Scripts\Player\PlayerShooting.cs" />
+    <Compile Include="Assets\Demigiant\DOTweenPro\DOTweenAnimation.cs" />
     <Compile Include="Assets\PostProcessing\Runtime\Attributes\GetSetAttribute.cs" />
     <Compile Include="Assets\PostProcessing\Runtime\Attributes\MinAttribute.cs" />
     <Compile Include="Assets\PostProcessing\Runtime\Attributes\TrackballAttribute.cs" />
@@ -147,10 +166,14 @@
     <Compile Include="Assets\Scripts\MainScene\Enemy\EnemyAttack.cs" />
     <Compile Include="Assets\Scripts\MainScene\Enemy\EnemyHealth.cs" />
     <Compile Include="Assets\Scripts\MainScene\Enemy\EnemyMovement.cs" />
+    <Compile Include="Assets\Scripts\MainScene\Managers\DataTransmitHelper.cs" />
+    <Compile Include="Assets\Scripts\MainScene\Managers\EnemyController.cs" />
     <Compile Include="Assets\Scripts\MainScene\Managers\EnemyManager.cs" />
     <Compile Include="Assets\Scripts\MainScene\Managers\GameOverManager.cs" />
-    <Compile Include="Assets\Scripts\MainScene\Managers\GameTimerManager.cs" />
+    <Compile Include="Assets\Scripts\MainScene\Managers\MainSceneGameManager.cs" />
+    <Compile Include="Assets\Scripts\MainScene\Managers\MenuPanelManager.cs" />
     <Compile Include="Assets\Scripts\MainScene\Managers\ScoreManager.cs" />
+    <Compile Include="Assets\Scripts\MainScene\Managers\TimerManager.cs" />
     <Compile Include="Assets\Scripts\MainScene\Player\PlayerHealth.cs" />
     <Compile Include="Assets\Scripts\MainScene\Player\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\MainScene\Player\PlayerShooting.cs" />
@@ -158,6 +181,18 @@
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Demigiant\DOTween\DOTween.XML" />
+    <None Include="Assets\Demigiant\DOTween\DOTween43.xml" />
+    <None Include="Assets\Demigiant\DOTween\DOTween46.xml" />
+    <None Include="Assets\Demigiant\DOTween\DOTween50.xml" />
+    <None Include="Assets\Demigiant\DOTween\Editor\DOTweenEditor.XML" />
+    <None Include="Assets\Demigiant\DOTween\readme.txt" />
+    <None Include="Assets\Demigiant\DOTweenPro\DOTweenPro.XML" />
+    <None Include="Assets\Demigiant\DOTweenPro\Editor\DOTweenProEditor.XML" />
+    <None Include="Assets\Demigiant\DOTweenPro\readme.txt" />
+    <None Include="Assets\Demigiant\DemiLib\Core\DemiLib.xml" />
+    <None Include="Assets\Demigiant\DemiLib\Core\Editor\DemiEditor.xml" />
+    <None Include="Assets\Demigiant\readme_DOTweenPro.txt" />
     <None Include="Assets\Fonts\LuckiestGuy\LICENSE.txt" />
     <None Include="Assets\PostProcessing\Editor Resources\Monitors\HistogramCompute.compute" />
     <None Include="Assets\PostProcessing\Editor Resources\Monitors\HistogramRender.shader" />
