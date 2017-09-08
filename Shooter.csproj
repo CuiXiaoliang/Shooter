@@ -143,16 +143,18 @@
     <Compile Include="Assets\PostProcessing\Runtime\Utils\GraphicsUtils.cs" />
     <Compile Include="Assets\PostProcessing\Runtime\Utils\MaterialFactory.cs" />
     <Compile Include="Assets\PostProcessing\Runtime\Utils\RenderTextureFactory.cs" />
-    <Compile Include="Assets\Scripts\Camera\CameraFollow.cs" />
-    <Compile Include="Assets\Scripts\Enemy\EnemyAttack.cs" />
-    <Compile Include="Assets\Scripts\Enemy\EnemyHealth.cs" />
-    <Compile Include="Assets\Scripts\Enemy\EnemyMovement.cs" />
-    <Compile Include="Assets\Scripts\Managers\EnemyManager.cs" />
-    <Compile Include="Assets\Scripts\Managers\GameOverManager.cs" />
-    <Compile Include="Assets\Scripts\Managers\ScoreManager.cs" />
-    <Compile Include="Assets\Scripts\Player\PlayerHealth.cs" />
-    <Compile Include="Assets\Scripts\Player\PlayerMovement.cs" />
-    <Compile Include="Assets\Scripts\Player\PlayerShooting.cs" />
+    <Compile Include="Assets\Scripts\MainScene\Camera\CameraFollow.cs" />
+    <Compile Include="Assets\Scripts\MainScene\Enemy\EnemyAttack.cs" />
+    <Compile Include="Assets\Scripts\MainScene\Enemy\EnemyHealth.cs" />
+    <Compile Include="Assets\Scripts\MainScene\Enemy\EnemyMovement.cs" />
+    <Compile Include="Assets\Scripts\MainScene\Managers\EnemyManager.cs" />
+    <Compile Include="Assets\Scripts\MainScene\Managers\GameOverManager.cs" />
+    <Compile Include="Assets\Scripts\MainScene\Managers\GameTimerManager.cs" />
+    <Compile Include="Assets\Scripts\MainScene\Managers\ScoreManager.cs" />
+    <Compile Include="Assets\Scripts\MainScene\Player\PlayerHealth.cs" />
+    <Compile Include="Assets\Scripts\MainScene\Player\PlayerMovement.cs" />
+    <Compile Include="Assets\Scripts\MainScene\Player\PlayerShooting.cs" />
+    <Compile Include="Assets\Scripts\StartScene\PanelManager.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
   </ItemGroup>
   <ItemGroup>

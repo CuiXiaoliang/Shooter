@@ -9,21 +9,22 @@ public class EnemyHealth : MonoBehaviour
     public AudioClip deathClip;
 
 
-    Animator anim;
-    AudioSource enemyAudio;
-    ParticleSystem hitParticles;
-    CapsuleCollider capsuleCollider;
-    bool isDead;
-    bool isSinking;
+    private Animator anim;
+    private AudioSource enemyAudio;
+    private ParticleSystem hitParticles;
+    private ParticleSystem deadParticles;
+    private CapsuleCollider capsuleCollider;
+    private bool isDead;
+    private bool isSinking;
 
 
     void Awake ()
     {
         anim = GetComponent <Animator> ();
         enemyAudio = GetComponent <AudioSource> ();
-        hitParticles = GetComponentInChildren <ParticleSystem> ();
+        hitParticles = transform.Find("HitParticles").GetComponent<ParticleSystem>();
+        deadParticles = transform.Find("DeathParticles").GetComponent<ParticleSystem>();
         capsuleCollider = GetComponent <CapsuleCollider> ();
-
         currentHealth = startingHealth;
     }
 
@@ -66,6 +67,8 @@ public class EnemyHealth : MonoBehaviour
 
         enemyAudio.clip = deathClip;
         enemyAudio.Play ();
+
+        deadParticles.Play();
     }
 
 
