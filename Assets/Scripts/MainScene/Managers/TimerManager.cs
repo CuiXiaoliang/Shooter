@@ -72,7 +72,7 @@ public class TimerManager : MonoBehaviour
 
     private void GameOver()
     {
-
+        GameObject.FindGameObjectWithTag("GameManager").GetComponent<MainSceneGameManager>().GameOver();
     }
 
     #endregion

@@ -549,7 +549,7 @@ ModelImporter:
       curves: []
       events:
       - time: 0.9977629
-        functionName: RestartLevel
+        functionName: GameOver
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0

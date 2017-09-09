@@ -52,7 +52,10 @@ public class PlayerHealth : MonoBehaviour
     #endregion
 
     #region Interface
-
+    /// <summary>
+    /// 对主角造成伤害的外部接口
+    /// </summary>
+    /// <param name="amount"></param>
     public void TakeDamage(int amount)
     {
         damaged = true;
@@ -69,17 +72,12 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    
-
-    private void RestartLevel()
-    {
-        SceneManager.LoadScene(0);
-    }
-
     #endregion
 
     #region InternalCall
-
+    /// <summary>
+    /// 主角死亡行为
+    /// </summary>
     private void Death()
     {
         isDead = true;
@@ -95,6 +93,9 @@ public class PlayerHealth : MonoBehaviour
         playerShooting.enabled = false;
     }
 
+    /// <summary>
+    /// 主角死亡，游戏结束，由Animator调用
+    /// </summary>
     private void GameOver()
     {
         GameObject.FindGameObjectWithTag("GameManager").GetComponent<MainSceneGameManager>().GameOver();

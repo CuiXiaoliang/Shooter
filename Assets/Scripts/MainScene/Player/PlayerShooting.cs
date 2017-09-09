@@ -9,15 +9,15 @@ public class PlayerShooting : MonoBehaviour
     public float range = 100f;
 
 
-    float timer;
-    Ray shootRay = new Ray();
-    RaycastHit shootHit;
-    int shootableMask;
-    ParticleSystem gunParticles;
-    LineRenderer gunLine;
-    AudioSource gunAudio;
-    Light gunLight;
-    float effectsDisplayTime = 0.2f;
+    private float timer;
+    private Ray shootRay = new Ray();
+    private RaycastHit shootHit;
+    private int shootableMask;
+    private ParticleSystem gunParticles;
+    private LineRenderer gunLine;
+    private AudioSource gunAudio;
+    private Light gunLight;
+    private float effectsDisplayTime = 0.2f;
     #endregion
 
     #region UnityInternalCall
@@ -61,7 +61,9 @@ public class PlayerShooting : MonoBehaviour
 
     #region InternalCall
 
-
+    /// <summary>
+    /// 射击判定函数，如果攻击到巡逻敌人，巡逻敌人会转变为攻击模式
+    /// </summary>
     private void Shoot()
     {
         timer = 0f;
@@ -85,6 +87,8 @@ public class PlayerShooting : MonoBehaviour
             if (enemyHealth != null)
             {
                 enemyHealth.TakeDamage(damagePerShot, shootHit.point);
+                enemyHealth.GetComponent<EnemyAttack>().SetAttrack();
+                enemyHealth.GetComponent<EnemyMovement>().SetAttrack();
             }
             gunLine.SetPosition(1, shootHit.point);
         }

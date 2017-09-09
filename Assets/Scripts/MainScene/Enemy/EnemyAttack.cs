@@ -1,70 +1,114 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
 
 public class EnemyAttack : MonoBehaviour
 {
+    #region Para
+
     public float timeBetweenAttacks = 0.5f;
     public int attackDamage = 10;
 
-
-    Animator anim;
-    GameObject player;
-    PlayerHealth playerHealth;
-    EnemyHealth enemyHealth;
-    bool playerInRange;
-    float timer;
-
-
-    void Awake ()
+    private enum State
     {
-        player = GameObject.FindGameObjectWithTag ("Player");
-        playerHealth = player.GetComponent <PlayerHealth> ();
+        IsAttacking,
+        IsPatroling
+    }
+
+    private State _enemyState;
+
+    private Animator anim;
+    private GameObject player;
+    private PlayerHealth playerHealth;
+    private EnemyHealth enemyHealth;
+    private bool playerInRange;
+    private float timer;
+
+    #endregion
+
+    #region UnityInternalCall
+
+    void Awake()
+    {
+        timer = 0;
+        _enemyState = State.IsAttacking;
+        player = GameObject.FindGameObjectWithTag("Player");
+        playerHealth = player.GetComponent<PlayerHealth>();
         enemyHealth = GetComponent<EnemyHealth>();
-        anim = GetComponent <Animator> ();
+        anim = GetComponent<Animator>();
     }
 
 
-    void OnTriggerEnter (Collider other)
+    void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject == player)
+        if (other.gameObject == player && _enemyState == State.IsAttacking)
         {
             playerInRange = true;
         }
     }
 
 
-    void OnTriggerExit (Collider other)
+    void OnTriggerExit(Collider other)
     {
-        if(other.gameObject == player)
+        if (other.gameObject == player)
         {
             playerInRange = false;
         }
     }
 
 
-    void Update ()
+    void Update()
     {
-        timer += Time.deltaTime;
-
-        if(timer >= timeBetweenAttacks && playerInRange && enemyHealth.currentHealth > 0)
+        if (_enemyState == State.IsAttacking)
         {
-            Attack ();
+            timer += Time.deltaTime;
+
+            if (timer >= timeBetweenAttacks && playerInRange && enemyHealth.currentHealth > 0)
+            {
+                Attack();
+            }
         }
-
-        if(playerHealth.currentHealth <= 0)
+        if (playerHealth.currentHealth <= 0)
         {
-            anim.SetTrigger ("PlayerDead");
+            anim.SetTrigger("PlayerDead");
         }
     }
 
+    #endregion
 
-    void Attack ()
+    #region InternalCall
+    /// <summary>
+    /// 攻击函数
+    /// </summary>
+    private void Attack()
     {
         timer = 0f;
 
-        if(playerHealth.currentHealth > 0)
+        if (playerHealth.currentHealth > 0)
         {
-            playerHealth.TakeDamage (attackDamage);
+            playerHealth.TakeDamage(attackDamage);
         }
     }
+
+    #endregion
+
+    #region Interface
+    /// <summary>
+    /// 设置敌人攻击行为为巡逻模式
+    /// </summary>
+    public void SetPatrol()
+    {
+        _enemyState = State.IsPatroling;
+        playerInRange = false;
+    }
+    /// <summary>
+    /// 设置敌人攻击行为为攻击模式
+    /// </summary>
+
+    public void SetAttrack()
+    {
+        _enemyState = State.IsAttacking;
+    }
+
+    #endregion
 }

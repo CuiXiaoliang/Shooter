@@ -50,6 +50,11 @@ public class AccountPanelManager : MonoBehaviour
     #endregion
 
     #region InternalCall
+    /// <summary>
+    /// 从本地加载排名数据
+    /// </summary>
+    /// <param name="saveFilePath"></param>
+    /// <returns></returns>
     private bool GetDataFromLocal(string saveFilePath)
     {
         FileStream file = new FileStream(saveFilePath, FileMode.OpenOrCreate);
@@ -77,6 +82,10 @@ public class AccountPanelManager : MonoBehaviour
         return true;
     }
 
+    /// <summary>
+    /// 获取此局游戏的成绩类
+    /// </summary>
+    /// <param name="name"></param>
     private void GetPlayerScore(string name)
     {
         string date = DateTime.Now.ToString();
@@ -109,6 +118,12 @@ public class AccountPanelManager : MonoBehaviour
             return 1;
     }
 
+    
+    /// <summary>
+    /// 保存更新后的排名到本地
+    /// </summary>
+    /// <param name="filePath"></param>
+    /// <returns></returns>
     private bool SavePlayerScoreDate(string filePath)
     {
         string text = JsonMapper.ToJson(_playerScores);
@@ -116,12 +131,18 @@ public class AccountPanelManager : MonoBehaviour
         return true;
     }
 
+    /// <summary>
+    /// 排名窗口弹出动画
+    /// </summary>
     private void DoRankListAppear()
     {
         RankingListMenu.DOScale(1, 1f).SetEase(Ease.OutBack);
         RankingListMenu.GetComponent<Image>().DOFade(1, 1).SetEase(Ease.OutBack);
     }
 
+    /// <summary>
+    /// 可视化排名信息
+    /// </summary>
     private void PutItemsIntoRank()
     {
         int count = 0;
@@ -143,6 +164,12 @@ public class AccountPanelManager : MonoBehaviour
             count++;
         }
     }
+
+    /// <summary>
+    /// 实装文字信息
+    /// </summary>
+    /// <param name="rankItem"></param>
+    /// <param name="playerScore"></param>
 
     private void PutTextIntoItem(GameObject rankItem, PlayerScore playerScore)
     {
@@ -180,12 +207,9 @@ public class AccountPanelManager : MonoBehaviour
 
                 GetPlayerScore(name);
                 PutItemsIntoRank();
-                
             }
             else
-            {
                 TipsText.text = "Name can't be empty!";
-            }
             _isBtnDown = true;
         }
         
