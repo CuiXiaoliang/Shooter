@@ -167,6 +167,7 @@
     <Compile Include="Assets\PostProcessing\Runtime\Utils\RenderTextureFactory.cs" />
     <Compile Include="Assets\Scripts\AccountScene\AccountPanelManager.cs" />
     <Compile Include="Assets\Scripts\AccountScene\PlayerScore.cs" />
+    <Compile Include="Assets\Scripts\AccountScene\RankItemControl.cs" />
     <Compile Include="Assets\Scripts\MainScene\Camera\CameraFollow.cs" />
     <Compile Include="Assets\Scripts\MainScene\Enemy\EnemyAttack.cs" />
     <Compile Include="Assets\Scripts\MainScene\Enemy\EnemyHealth.cs" />
