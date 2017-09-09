@@ -6,6 +6,7 @@ using System.IO;
 using DG.Tweening;
 using LitJson;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class AccountPanelManager : MonoBehaviour
@@ -213,6 +214,17 @@ public class AccountPanelManager : MonoBehaviour
             _isBtnDown = true;
         }
         
+    }
+
+    public void OnClickMenuBtn()
+    {
+        SceneManager.LoadScene(0);
+        Destroy(_dataTransmitHelper);
+    }
+
+    public void OnClickQuitBtn()
+    {
+        Application.Quit();
     }
 
     #endregion
