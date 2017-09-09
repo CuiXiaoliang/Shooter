@@ -8,7 +8,8 @@ public class MainSceneGameManager : MonoBehaviour
 {
     #region Para
 
-    private bool _isPaused;
+    private bool _isGameOver = false;
+    private bool _isPaused = false;
     public bool IsGamePaused { get { return _isPaused; } }
 
 
@@ -33,6 +34,8 @@ public class MainSceneGameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(_isGameOver)
+            return;
         if (Input.GetKey(KeyCode.Escape))
         {
             if(menuPanelManager.IsMenuMoving)
@@ -47,19 +50,7 @@ public class MainSceneGameManager : MonoBehaviour
     #endregion
 
     #region Interface
-
-    public void GameOver()
-    {
-        
-    }
-
-
-
-    #endregion
-
-    #region InternalCallFunc
-
-    private void Pause()
+    public void Pause()
     {
         timerManager.PauseGame();
         menuPanelManager.Pause();
@@ -69,7 +60,7 @@ public class MainSceneGameManager : MonoBehaviour
         _isPaused = true;
     }
 
-    private void Continue()
+    public void Continue()
     {
         menuPanelManager.Continue();
         menuPanelManager.transform.DOScale(1, 0.6f)
@@ -83,6 +74,20 @@ public class MainSceneGameManager : MonoBehaviour
             });
 
     }
+
+    public void GameOver()
+    {
+        _isGameOver = true;
+        dataTransmitHelper.score = ScoreManager.score;
+        dataTransmitHelper.num = ScoreManager.num;
+        menuPanelManager.GameOver();
+    }
+
+    #endregion
+
+    #region InternalCallFunc
+
+
 
     #endregion
 

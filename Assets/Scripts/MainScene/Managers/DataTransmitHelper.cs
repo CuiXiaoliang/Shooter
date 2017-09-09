@@ -18,4 +18,14 @@ public class DataTransmitHelper : MonoBehaviour
     {
 		
 	}
+
+    #region Interface
+
+    public void Reset()
+    {
+        score = 0;
+        num = 0;
+    }
+
+    #endregion
 }
